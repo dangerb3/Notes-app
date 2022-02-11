@@ -50,26 +50,6 @@ function App() {
       </form>
       <PostList posts = {posts} title = {'Список постов JS'}/>
       <PostList posts = {posts2} title = {'Список постов Python '}/>
-
-      {/* Для классов css здесь используется className, т.к. имя class занято для классов в Js */}
-
-      {/* Передача пропсов в компонент. Названия аргументов могут быть любые */}
-      {/* <PostItem post={{ id: 1, title: "Javascript", body: "Description" }} /> */}
-
-      {/* <ClassCounter /> */}
-      {/* <h1>{likes}</h1>
-      <h1>{value}</h1> */}
-      {/* <input */}
-      {/* type="text"
-         value={value}
-         onChange={(event) =>
-         setValue(event.target.value) */}
-      {/*  Связывание состояния со значением в input  */}
-      {/* ></input> */}
-      {/* <button onClick={increment}>Increment</button> */}
-      {/* Просто так меняться значение не будет. Нужно использовать стейт, чтобы реакт знал что менять */}
-      {/* <button onClick={decrement}>Decrement</button> */}
-      {/* В функциях не указываем скобки. Передаем как ссылку. */}
     </div>
   );
 }
