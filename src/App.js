@@ -22,15 +22,12 @@ function App() {
     const [modal,setModal] = useState(false)
 
     const sortedPosts = useMemo(()=>{
-        console.log('sorted posts')// Теперь вызывается один раз, а не при каждом изменении input
+        console.log('sorted posts')
         if (filter.sort){
-            // Сравнение русских символов localCompare
-            // Передаем [...posts] т.к. менять переменную стейта напрямую нельзя
             return [...posts].sort((a,b)=>a[filter.sort].localeCompare(b[filter.sort]))
         }
         return posts
-    }, [filter.sort, posts]); // То есть если какая то из deps поменяет значение, будет вызван callback
-
+    }, [filter.sort, posts]); 
     const sortedAndSearchedPosts = useMemo(()=>{
         return sortedPosts.filter(post=>post.title.toLowerCase().includes(filter.query.toLowerCase()))
     }, [filter.query, sortedPosts])
@@ -40,7 +37,6 @@ function App() {
       setModal(false)
   }
 
-  // Получаем post из дочернего компонента
   function removePost(post) {
     setPosts(posts.filter(p => p.id !== post.id))
   }
@@ -51,7 +47,7 @@ function App() {
             Создать пользователя
         </MyButton>
         <MyModal visible={modal} setVisible={setModal}>
-            <PostForm create = {createPost}/> {/*Передали колбэк функцию в качестве пропса*/}
+            <PostForm create = {createPost}/>
         </MyModal>
         <hr style={{margin: '15px 0'}}/>
         <PostFilter
@@ -59,27 +55,6 @@ function App() {
         setFilter={setFilter}
         />
           <PostList remove = {removePost} posts={sortedAndSearchedPosts} title='Посты про JS'/>
-
-
-        {/* Для классов css здесь используется className, т.к. имя class занято для классов в Js */}
-
-      {/* Передача пропсов в компонент. Названия аргументов могут быть любые */}
-      {/* <PostItem post={{ id: 1, title: "Javascript", body: "Description" }} /> */}
-
-      {/* <ClassCounter /> */}
-      {/* <h1>{likes}</h1>
-      <h1>{value}</h1> */}
-      {/* <input */}
-      {/* type="text"
-         value={value}
-         onChange={(event) =>
-         setValue(event.target.value) */}
-      {/*  Связывание состояния со значением в input  */}
-      {/* ></input> */}
-      {/* <button onClick={increment}>Increment</button> */}
-      {/* Просто так меняться значение не будет. Нужно использовать стейт, чтобы реакт знал что менять */}
-      {/* <button onClick={decrement}>Decrement</button> */}
-      {/* В функциях не указываем скобки. Передаем как ссылку. */}
     </div>
   );
 }
