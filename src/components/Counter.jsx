@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
-// Пример создания компонента с помощью функций
-// Компонент всегда называется как файл и всегда с большой буквы
+// Создание компонента с помощью функций
 
 const Counter = function(){
     const [count, setCount] = useState(0)
@@ -13,7 +12,7 @@ const Counter = function(){
         setCount(count - 1);
     }
 
-    return(// возврат jsx напрямую без функции render()
+    return(
         <div>
             <h1>{count}</h1>
             <button onClick={increment}>Increment</button>
@@ -22,5 +21,5 @@ const Counter = function(){
     )
 }
 
-export default Counter;  // Все компоненты надо экспортировать 
+export default Counter;
 
