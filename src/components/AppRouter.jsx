@@ -14,6 +14,7 @@ const AppRouter = () => {
         <Route path="/about" element={<About />} />
         <Route path="/posts" element={<Posts />}/>
         <Route path="/posts/:id" element={<PostIdPage/>} />
+        <Route path="*" element={<Posts />}/>
       </Routes>
     </BrowserRouter>
     );
