@@ -10,6 +10,7 @@ import Loader from '../components/UI/Loader/Loader';
 import PostList from '../components/PostList';
 import PostFilter from '../components/PostFilter';
 import Pagination from '../components/UI/pagination/Pagination';
+import { Outlet } from "react-router-dom";
 
 function Posts() {
   const [posts, setPosts] = useState([]);

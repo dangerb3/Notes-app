@@ -1,9 +1,10 @@
 import React from 'react';
-import { Routes, Route, BrowserRouter } from 'react-router-dom';
+import { Routes, Route, BrowserRouter, Outlet } from 'react-router-dom';
 import Navbar from './UI/Navbar/Navbar';
 import About from '../pages/About';
 import Posts from '../pages/Posts';
 import Error from '../pages/Error';
+import PostIdPage from '../pages/PostIdPage';
 
 const AppRouter = () => {
     return (
@@ -11,8 +12,8 @@ const AppRouter = () => {
       <Navbar />
       <Routes>
         <Route path="/about" element={<About />} />
-        <Route path="/posts" element={<Posts />} />
-        <Route path="*" element={<Error />} />
+        <Route path="/posts" element={<Posts />}/>
+        <Route path="/posts/:id" element={<PostIdPage/>} />
       </Routes>
     </BrowserRouter>
     );
