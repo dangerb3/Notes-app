@@ -1,13 +1,19 @@
 import React from 'react';
 import {BrowserRouter } from 'react-router-dom';
 import Navbar from './UI/Navbar/Navbar';
-import Router from '../router/routes';
+import { PublicRouter, PrivateRouter } from '../router/routes';
 
 const AppRouter = () => {
+    const isAuth = true;
+
     return (
-        <BrowserRouter>
+    <BrowserRouter>
       <Navbar />
-      <Router/>
+        {
+        isAuth
+      ? <PrivateRouter/>
+      : <PublicRouter/>
+        }
     </BrowserRouter>
     );
 }
