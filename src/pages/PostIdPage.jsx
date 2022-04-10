@@ -16,7 +16,6 @@ const PostIdPage = () => {
     })
     const [fetchCommentsById, isComLoading, comError]  = useFetching(async (id)=>{
         const response = await PostService.getCommentsById(id)
-        console.log(response.data)
         setComments(response.data)
     })
 
@@ -38,8 +37,8 @@ const PostIdPage = () => {
             isComLoading
             ? <Loader/>
             : <div>
-                {comments.map((comm)=>
-                <div style={{marginTop: 15}}>
+                {comments.map((comm, index)=>
+                <div style={{marginTop: 15}} key={index}>
                     <h5>{comm.email}</h5>
                     <div>{comm.body}</div>
                 </div>)}

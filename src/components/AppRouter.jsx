@@ -1,20 +1,17 @@
 import React from 'react';
-import {BrowserRouter } from 'react-router-dom';
-import Navbar from './UI/Navbar/Navbar';
+import { useContext } from 'react';
 import { PublicRouter, PrivateRouter } from '../router/routes';
+import { AuthContext } from '../context/index';
 
 const AppRouter = () => {
-    const isAuth = true;
+    const {isAuth} =  useContext(AuthContext);
 
     return (
-    <BrowserRouter>
-      <Navbar />
-        {
+
         isAuth
       ? <PrivateRouter/>
       : <PublicRouter/>
-        }
-    </BrowserRouter>
+        
     );
 }
 
