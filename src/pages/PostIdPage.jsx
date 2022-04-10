@@ -37,8 +37,8 @@ const PostIdPage = () => {
             isComLoading
             ? <Loader/>
             : <div>
-                {comments.map((comm, index)=>
-                <div style={{marginTop: 15}} key={index}>
+                {comments.map((comm)=>
+                <div style={{marginTop: 15}} key={comm.id}>
                     <h5>{comm.email}</h5>
                     <div>{comm.body}</div>
                 </div>)}
