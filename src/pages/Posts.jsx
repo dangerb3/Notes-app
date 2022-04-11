@@ -13,6 +13,7 @@ import Loader from '../components/UI/Loader/Loader';
 import PostList from '../components/PostList';
 import PostFilter from '../components/PostFilter';
 import Pagination from '../components/UI/pagination/Pagination';
+import { useObserver } from '../components/hooks/useObserver';
 
 function Posts() {
   const [posts, setPosts] = useState([]);
@@ -27,7 +28,6 @@ function Posts() {
     filter.query,
   );
   const lastElement = useRef();
-  const observer = useRef();
 
   const [fetchPosts, isPostLoading, postError] = useFetching(
     async (limit, page) => {
@@ -38,26 +38,9 @@ function Posts() {
     },
   );
 
-  useEffect(() => {
-    // Intersection Observer
-    // const options = {
-    //   root: document.querySelector('#scrollArea'),
-    //   rootMargin: '0px',
-    //   threshold: 1.0
-    // };
-
-    if (isPostLoading) return;
-    if (observer.current) observer.current.disconnect();
-
-    const callback = function (entries, observer) {
-      if (entries[0].isIntersecting && page < totalPages) { // for execute callback only once
-        setPage(page + 1);
-      }
-    };
-
-    observer.current = new IntersectionObserver(callback);
-    observer.current.observe(lastElement.current);
-  }, [isPostLoading]);
+  useObserver(lastElement, page < totalPages, isPostLoading, () => {
+    setPage(page + 1);
+  });
 
   useEffect(() => {
     fetchPosts(limit, page);
