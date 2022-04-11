@@ -2,7 +2,6 @@
 import React, {
   useMemo, useRef, useState, useEffect,
 } from 'react';
-import { Outlet } from 'react-router-dom';
 import PostService from '../API/PostService';
 import { getPageCount } from '../utils/pages';
 import { useFetching } from '../components/hooks/useFetching';
@@ -27,15 +26,38 @@ function Posts() {
     filter.sort,
     filter.query,
   );
+  const lastElement = useRef();
+  const observer = useRef();
 
   const [fetchPosts, isPostLoading, postError] = useFetching(
     async (limit, page) => {
       const response = await PostService.getAll(limit, page);
-      setPosts(response.data);
+      setPosts([...posts, ...response.data]);
       const totalCount = response.headers['x-total-count'];
       setTotalPages(getPageCount(totalCount, limit));
     },
   );
+
+  useEffect(() => {
+    // Intersection Observer
+    // const options = {
+    //   root: document.querySelector('#scrollArea'),
+    //   rootMargin: '0px',
+    //   threshold: 1.0
+    // };
+
+    if (isPostLoading) return;
+    if (observer.current) observer.current.disconnect();
+
+    const callback = function (entries, observer) {
+      if (entries[0].isIntersecting && page < totalPages) { // for execute callback only once
+        setPage(page + 1);
+      }
+    };
+
+    observer.current = new IntersectionObserver(callback);
+    observer.current.observe(lastElement.current);
+  }, [isPostLoading]);
 
   useEffect(() => {
     fetchPosts(limit, page);
@@ -53,7 +75,6 @@ function Posts() {
   const changePage = (page) => {
     setPage(page);
     // fetchPosts(); из-за асинхронности так делать не стоит, состояния внутри обновляются медленно
-    fetchPosts(limit, page);
   };
 
   return (
@@ -73,19 +94,10 @@ function Posts() {
         {postError}
       </h1>
       )}
-      {isPostLoading ? (
-        <div
-          style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}
-        >
-          <Loader />
-        </div>
-      ) : (
-        <PostList
-          remove={removePost}
-          posts={sortedAndSearchedPosts}
-          title="Посты про JS"
-        />
-      )}
+      <PostList remove={removePost} posts={sortedAndSearchedPosts} title="Посты про JS" />
+      <div ref={lastElement} style={{ height: 20, background: 'red' }} />
+      {isPostLoading
+        && <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}><Loader /></div>}
       <Pagination page={page} changePage={changePage} totalPages={totalPages} />
     </div>
   );
