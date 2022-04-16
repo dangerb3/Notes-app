@@ -17,10 +17,10 @@ function PostItem(props) {
       </div>
       <div className="post__btns">
         <MyButton onClick={() => navigate(`${props.post.id}`)}>
-          Открыть
+          Open
         </MyButton>
         <MyButton onClick={() => props.remove(props.post)}>
-          Удалить
+          Remove
         </MyButton>
       </div>
     </div>

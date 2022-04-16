@@ -14,11 +14,11 @@ function Navbar() {
 
   return (
     <div className="navbar">
-      <MyButton onClick={logout}>Выйти</MyButton>
+      <MyButton onClick={() => navigate('/posts')}>Home</MyButton>
       <div className="navbar__links">
         {/* <Link to="/about">О сайте</Link> */}
-        <MyButton onClick={() => navigate('/about')}>О сайте</MyButton>
-        <MyButton onClick={() => navigate('/posts')}>Посты</MyButton>
+        <MyButton onClick={() => navigate('/about')}>About</MyButton>
+        <MyButton style={{ display: isAuth ? 'inline-block' : 'none' }} onClick={logout}>Logout</MyButton>
         {/* <Link to="/posts">Посты</Link> */}
       </div>
     </div>

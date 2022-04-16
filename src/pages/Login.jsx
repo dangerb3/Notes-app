@@ -14,11 +14,11 @@ function Login() {
 
   return (
     <div>
-      <h1>Страница для логина</h1>
+      <h1 style={{ textAlign: 'center' }}>Login page</h1>
       <form onSubmit={login}>
-        <MyInput type="text" placeholder="Введите логин" />
-        <MyInput type="text" placeholder="Введите пароль" />
-        <MyButton type="submit">Войти</MyButton>
+        <MyInput type="text" placeholder="Username" />
+        <MyInput type="text" placeholder="Password" />
+        <MyButton type="submit">Login</MyButton>
       </form>
     </div>
   );

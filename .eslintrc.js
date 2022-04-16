@@ -33,5 +33,6 @@ module.exports = {
     'function-paren-newline': 'off',
     'func-names': 'off',
     'no-plusplus': 'off',
+    'no-unused-expressions': 'off',
   },
 };
