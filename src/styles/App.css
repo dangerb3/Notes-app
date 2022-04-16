@@ -48,17 +48,26 @@
 .page__wrapper {
     margin-top: 30px;
     display: flex;
+    margin-bottom: 30px;
+
 }
 
 .page {
     padding: 10px;
-    border: 1px solid teal;
+    border: 2px solid teal;
     cursor: pointer;
+    border-left: 1px;
+    background-color: white;
+    color:teal
 }
 
 .page__current {
-    border: 2px solid orange;
-    font-weight: bold;
+    background-color: teal;
+    color:white
+}
+
+.page:first-child{
+    border: 2px solid teal;
 }
 
 .navbar {
