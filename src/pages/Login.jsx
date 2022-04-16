@@ -18,7 +18,7 @@ function Login() {
       <form onSubmit={login}>
         <MyInput type="text" placeholder="Введите логин" />
         <MyInput type="text" placeholder="Введите пароль" />
-        <MyButton>Войти</MyButton>
+        <MyButton type="submit">Войти</MyButton>
       </form>
     </div>
   );
