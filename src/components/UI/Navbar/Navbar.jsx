@@ -6,11 +6,13 @@ import MyButton from '../button/MyButton';
 function Navbar() {
   const { isAuth, setIsAuth } = useContext(AuthContext);
 
+  const navigate = useNavigate();
+
   const logout = () => {
     setIsAuth(false);
     localStorage.removeItem('auth');
+    navigate('/');
   };
-  const navigate = useNavigate();
 
   return (
     <div className="navbar">

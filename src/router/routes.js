@@ -18,6 +18,7 @@ export function PrivateRouter() {
 export function PublicRouter() {
   const routes = useRoutes([
     { path: '/login', element: <Login /> },
+    { path: '/about', element: <About /> },
     { path: '*', element: <Navigate to="/login" /> },
   ]);
 
