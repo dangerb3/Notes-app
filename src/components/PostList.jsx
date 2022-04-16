@@ -2,8 +2,10 @@ import React from 'react';
 import { CSSTransition, TransitionGroup } from 'react-transition-group';
 import PostItem from './PostItem';
 
-function PostList({ posts, title, remove }) {
-  if (!posts.length) {
+function PostList({
+  posts, title, remove, isPostLoading
+}) {
+  if (!posts.length && !isPostLoading) {
     return (
       <h1 style={{ textAlign: 'center' }}>
         Posts not found

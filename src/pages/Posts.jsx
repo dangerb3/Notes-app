@@ -82,36 +82,27 @@ function Posts() {
         >
           Infinity scroll
         </MyCheckBox>
-
       </div>
-
       <MyModal visible={modal} setVisible={setModal}>
         <PostForm create={createPost} />
       </MyModal>
       <hr style={{ margin: '15px 0' }} />
-      <PostFilter filter={filter} setFilter={setFilter} />
-      {!infinityScroll
-      && (
-      <MySelect
-        value={limit}
-        onChange={(value) => setLimit(value)}
-        defaultValue="Items count on page"
-        options={[
-          { value: 5, name: '5' },
-          { value: 10, name: '10' },
-          { value: 25, name: '25' },
-          { value: -1, name: 'Show all' }
-        ]}
-      />
-      )}
-
+      <div style={{ display: 'flex' }}>
+        <PostFilter
+          filter={filter}
+          setFilter={setFilter}
+          limit={limit}
+          setLimit={setLimit}
+          infinityScroll={infinityScroll}
+        />
+      </div>
       {postError && (
       <h1>
         Error
         {postError}
       </h1>
       )}
-      <PostList remove={removePost} posts={sortedAndSearchedPosts} title="Post list" />
+      <PostList remove={removePost} posts={sortedAndSearchedPosts} isPostLoading={isPostLoading} title="Post list" />
       <div ref={lastElement} />
       {isPostLoading
         && <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}><Loader /></div>}
