@@ -23,31 +23,34 @@ function PostIdPage() {
   }, []);
 
   return (
-    <div>
-      <h1>
-        Post page with id =
+    <div className="post-id-page">
+      <h1 className="post-id-page__title">
+        Post
+        {' '}
         {params.id}
       </h1>
+      <h3>Description</h3>
+
       {
             isLoading
               ? <Loader />
               : (
                 <div>
-                  {post.id}
+                  {/* {post.id}
                   .
-                  {' '}
+                  {' '} */}
                   {post.title}
                 </div>
               )
         }
-      <h1>Comments</h1>
+      <h3>Comments</h3>
       {
             isComLoading
               ? <Loader />
               : (
                 <div>
                   {comments.map((comm) => (
-                    <div style={{ marginTop: 15 }} key={comm.id}>
+                    <div className="post-id-page__comment-item" style={{ marginTop: 15 }} key={comm.id}>
                       <h5>{comm.email}</h5>
                       <div>{comm.body}</div>
                     </div>

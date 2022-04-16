@@ -13,7 +13,7 @@
 }
 
 .App {
-    width: 800px;
+    width: 60vw;
 } 
 
 .post {
@@ -49,7 +49,6 @@
     margin-top: 30px;
     display: flex;
     margin-bottom: 30px;
-
 }
 
 .page {
@@ -81,5 +80,28 @@
 
 .navbar__links {
     margin-left:auto;
-    /* display: flex */
+}
+
+.post-id-page {
+    padding: 20px 20px;
+    width: 60vw;
+
+}
+
+.post-id-page>h3 {
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
+.post-id-page__comment-item{
+    padding: 15px;
+    border: 2px solid teal;
+    margin-top: 15px;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.post-id-page__comment-item>h5{
+    margin-bottom: 8px;
+
 }
