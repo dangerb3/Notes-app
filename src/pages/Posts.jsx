@@ -103,7 +103,7 @@ function Posts() {
       </h1>
       )}
       <PostList remove={removePost} posts={sortedAndSearchedPosts} isPostLoading={isPostLoading} title="Post list" />
-      <div ref={lastElement} />
+      <div style={{ height: '10px' }} ref={lastElement} />
       {isPostLoading
         && <div style={{ display: 'flex', justifyContent: 'center', marginTop: 50 }}><Loader /></div>}
       {!infinityScroll
